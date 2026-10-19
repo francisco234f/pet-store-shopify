@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Petora",
+        "heading": "Comfort-first beds for naps, play, and happy homes.",
+        "subheading": "Soft, supportive designs made for cozy dogs and cats.",
+        "primary_cta": "Shop beds",
+        "secondary_cta": "View cart"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Featured picks",
+        "subtitle": "Best sellers for dogs & cats",
+        "limit": 4
+      }
+    }
+  },
+  "order": ["hero", "featured_products"]
+}

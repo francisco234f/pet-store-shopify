@@ -1,0 +1,50 @@
+<section class="container section-shell" id="featured-products">
+  <div class="section-heading row-between">
+    <div>
+      <p class="eyebrow">Featured picks</p>
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    {% for product in collections.all.products limit: section.settings.limit %}
+      <article class="product-card">
+        <div class="product-img-wrap">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.title | escape }}" loading="lazy">
+          {% else %}
+            <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80" alt="Pet bed" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="product-body">
+          <p class="mini-label">{{ product.type | default: 'Pet Bed' }}</p>
+          <h3>{{ product.title }}</h3>
+          <div class="price-row">
+            <span class="price">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="compare-at">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+          <div class="card-actions">
+            <a href="{{ product.url }}" class="secondary-btn small-btn">View details</a>
+            <form action="/cart/add" method="post" class="product-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+              <button type="submit" class="primary-btn small-btn">Add to cart</button>
+            </form>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "class": "shopify-section-featured-products",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Section title", "default": "Best sellers for dogs & cats" },
+    { "type": "range", "id": "limit", "label": "Product limit", "min": 2, "max": 8, "step": 1, "default": 4 }
+  ]
+}
+{% endschema %}

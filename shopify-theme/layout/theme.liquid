@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page_title }}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+    {{ content_for_header }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body class="petora-theme">
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="/{{ routes.root_url }}" class="brand" aria-label="Petora home">P</a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="{{ routes.all_products_collection_url }}">Shop</a>
+          <a href="#collections">Collections</a>
+          <a href="/pages/about">About</a>
+        </nav>
+        <a href="/cart" class="cart-link">Cart</a>
+      </div>
+    </header>
+
+    <main>
+      {{ content_for_layout }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>
+          <h3>Petora</h3>
+          <p>Designer beds for dogs and cats.</p>
+        </div>
+        <div>
+          <p>hello@petora.store</p>
+          <p>+1 (800) PET-ORA</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
